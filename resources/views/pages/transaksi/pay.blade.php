@@ -9,12 +9,24 @@
         <h6 class="m-0 font-weight-bold text-primary">Selesaikan Transaksi</h6>
     </div>
     <div class="card-body">
+        @if(session('error'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>{{ session('error') }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
         <form action="{{ route('trans.bayar',$data) }}" method="post">
         @csrf @method('patch')
 
             <div class="form-group">
                 <label for="">Total yang harus Bayar</label>
-                <input type="text" class="form-control" name="punishment" value="{{ $data->harga + $data->total_denda }}" readonly id="total">
+                @if(strtotime($data->tgl_dikembalikan) <= strtotime($data->tgl_kembali))
+                    <input type="text" class="form-control" name="punishment" value="{{ $data->harga }}" readonly id="total">
+                @else
+                    <input type="text" class="form-control" name="punishment" value="{{ $data->harga + $data->total_denda }}" readonly id="total">
+                @endif
             </div>
             <div class="form-group">
                 <label for="">Bayar</label>

@@ -152,9 +152,18 @@ class TransactionController extends Controller
     public function bayar(Request $request,$id)
     {
         $trans = Transaction::find($id);
+        $total = $trans->harga + $trans->denda;
         $trans->bayar = $request->bayar;
         $trans->kembalian = $request->bayarr;
-        $trans->update();
+        if ($trans->bayar <  $trans->harga) {
+            return back()->with('error','Duit kurang gblk');
+        }
+        elseif ($trans->bayar <  $total) {
+            return back()->with('error','Duit kurang gblk');
+        }
+        else{
+            $trans->update();
+        }
 
         return redirect()->route('trans.index')->with('message','Success');
     }

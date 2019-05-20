@@ -37,7 +37,7 @@
 				<td>{{ $show->harga }}</td>
 			</tr>
 			<tr>
-				<td>Denda</td>
+				<td>Denda Harian</td>
 				<td>:</td>
 				<td>{{ $show->denda }}</td>
 			</tr>
