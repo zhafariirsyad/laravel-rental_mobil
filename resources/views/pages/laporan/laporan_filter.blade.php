@@ -20,6 +20,7 @@
 			<th>Tgl Pinjam</th>
 			<th>Tgl Kembali</th>
 			<th>Harga</th>
+			<th>Denda</th>
 			<th>Bayar</th>
 			<th>Kembalian</th>
 			<th>Tgl Transaksi</th>
@@ -34,6 +35,7 @@
 				<td>{{ $datas->tgl_pinjam }}</td>
 				<td>{{ $datas->tgl_kembali }}</td>
 				<td>{{ $datas->harga }}</td>
+				<td>{{ $datas->denda }}</td>
 				<td>{{ $datas->bayar }}</td>
 				<td>{{ $datas->kembalian }}</td>
 				<td>{{ $datas->tgl_transaksi }}</td>

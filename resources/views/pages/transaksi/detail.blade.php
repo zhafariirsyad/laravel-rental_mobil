@@ -37,6 +37,11 @@
 				<td>{{ $show->harga }}</td>
 			</tr>
 			<tr>
+				<td>Denda</td>
+				<td>:</td>
+				<td>{{ $show->denda }}</td>
+			</tr>
+			<tr>
 				<td>Bayar</td>
 				<td>:</td>
 				<td>{{ $show->bayar }}</td>
@@ -45,6 +50,11 @@
 				<td>Kembalian</td>
 				<td>:</td>
 				<td>{{ $show->kembalian }}</td>
+			</tr>
+			<tr>
+				<td>Tanggal Dikembalikan</td>
+				<td>:</td>
+				<td>{{ $show->tgl_dikembalikan }}</td>
 			</tr>
 		</table>
 	</div>

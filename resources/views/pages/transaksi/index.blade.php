@@ -44,7 +44,7 @@
                             <td>
                                 <div class="btn-group">
                                     @if($datas->tgl_dikembalikan == (null))
-                                        <a href="{{ route('trans.edit',$datas) }}" class="btn btn-sm btn-success">Transaksi Selesai</a>
+                                        <a href="{{ route('trans.edit',$datas) }}" class="btn btn-sm btn-success">Kembalikan</a>
                                         <a href="{{ route('trans.show',$datas) }}" class="btn btn-sm btn-info">Detail</a>
                                     @else
                                         <a href="{{ route('trans.show',$datas) }}" class="btn btn-sm btn-info">Detail</a>

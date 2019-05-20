@@ -23,24 +23,28 @@
             </div>
             <div class="form-group">
                 <label for="">Tanggal Pinjam</label>
-                <input type="text" name="tgl_pinjam" class="form-control" id="" value="{{ substr($edit->tgl_pinjam,0,10) }}" disabled>
+                <input type="text" name="borrow_date" class="form-control" id="" value="{{ substr($edit->tgl_pinjam,0,10) }}" readonly>
             </div>
             <div class="form-group">
                 <label for="">Tanggal Kembali</label>
-                <input type="text" name="tgl_kembali" class="form-control" id="" value="{{ substr($edit->tgl_kembali,0,10) }}" disabled>
+                <input type="text" name="back_date" class="form-control" id="" value="{{ substr($edit->tgl_kembali,0,10) }}" readonly>
             </div>
             <div class="form-group">
                 <label for="">Harga</label>
-                <input type="text" class="form-control" name="harga" value="{{ $edit->harga }}" disabled id="harga">
+                <input type="text" class="form-control" name="price" value="{{ $edit->harga }}" readonly id="harga">
             </div>
             <div class="form-group">
+                <label for="">Denda</label>
+                <input type="text" class="form-control" name="punishment" value="{{ $edit->denda }}" readonly id="denda">
+            </div>
+            {{-- <div class="form-group">
                 <label for="">Bayar</label>
                 <input type="text" class="form-control" name="bayar" value="0" id="bayar">
             </div>
             <div class="form-group">
                 <label for="">Kembalian</label>
                 <input type="text" class="form-control" name="back" id="kembalian" disabled>
-            </div>
+            </div> --}}
             <div class="form-group">
                 <label for="">Tanggal Dikembalikan</label>
                 <input type="date" class="form-control" name="tgl_dikembalikan" value="{{ date('Y-m-d') }}">

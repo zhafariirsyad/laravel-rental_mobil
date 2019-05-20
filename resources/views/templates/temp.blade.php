@@ -1,4 +1,4 @@
-
+﻿
 <!DOCTYPE html>
 <html lang="en">
 
@@ -215,12 +215,21 @@
             console.log(kembali);
         });
 
+        $('#pay').keyup(function(){
+          var pay = Number($('#pay').val());
+          var harga = Number($('#total').val());
+
+          var kembali = pay - harga;
+          $('#kembalian').val(kembali);
+        });
+
     });
+
 </script>
 <form action="" method="post" id="delete-form">
     @csrf @method('delete')
 </form>
-
+	
   <!-- Bootstrap core JavaScript-->
 
   <script src="{{ asset('dist/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>

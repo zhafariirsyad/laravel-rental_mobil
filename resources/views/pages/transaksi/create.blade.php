@@ -40,6 +40,10 @@
                 <input type="text" class="form-control" name="harga">
             </div>
             <div class="form-group">
+                <label for="">Harga Denda / Hari</label>
+                <input type="text" class="form-control" name="denda">
+            </div>
+            <div class="form-group">
                 <button class="btn btn-success">Simpan</button>
             </div>
         </form>

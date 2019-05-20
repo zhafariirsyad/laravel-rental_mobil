@@ -106,18 +106,25 @@ class TransactionController extends Controller
      */
     public function update(Request $request, $transaction)
     {
+        // return $request->all();
         $trans = Transaction::find($transaction);
-        $trans->bayar = $request->bayar;
-        $kembalian = ($trans->bayar - $trans->harga);
-        $trans->kembalian = $kembalian;
+        $batas_kembali = strtotime($request->back_date);
+        $dikembalikan = strtotime($request->tgl_dikembalikan);
+        $selisih = abs(($batas_kembali - $dikembalikan) / (60*60*24));
+        $total_denda = $request->punishment * $selisih;
+
+        // $trans->bayar = $request->bayar;
+        // $kembalian = ($trans->bayar - $trans->harga);
+        // $trans->kembalian = $kembalian;
+        $trans->total_denda = $total_denda;
         $trans->status = 1;
-        $trans->tgl_dikembalikan = Carbon::now();
+        $trans->tgl_dikembalikan = $request->tgl_dikembalikan ;
         $trans->save();
 
         $id = $trans->mobil_id;
         Car::find($id)->update(['status'=>'0']);
 
-        return redirect()->route('trans.index')->with('message','Success');
+        return redirect()->route('trans.pay',$trans);
     }
 
     /**
@@ -128,6 +135,27 @@ class TransactionController extends Controller
      */
     public function destroy(Transaction $transaction)
     {
-        //
+        return view('pages.transaksi.pay',[
+            'data' => Transaction::all()
+        ]);
+    }
+
+    public function pay($id)
+    {
+        // return $id;
+        $trans = Transaction::find($id);
+        return view('pages.transaksi.pay',[
+            'data' => $trans
+        ]);
+    }
+
+    public function bayar(Request $request,$id)
+    {
+        $trans = Transaction::find($id);
+        $trans->bayar = $request->bayar;
+        $trans->kembalian = $request->bayarr;
+        $trans->update();
+
+        return redirect()->route('trans.index')->with('message','Success');
     }
 }

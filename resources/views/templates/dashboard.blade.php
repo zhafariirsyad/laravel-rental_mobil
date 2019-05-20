@@ -83,12 +83,19 @@
           <span>Transaksi</span></a>
       </li>
 
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('report.index') }}">
+          <i class="fas fa-fw fa-edit"></i>
+          <span>Report</span></a>
+      </li>
+
       <hr class="sidebar-divider my-0">
       <!-- Sidebar Toggler (Sidebar) -->
       <div class="text-center d-none d-md-inline mt-3">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
       </div>
 
+      
     </ul>
     <!-- End of Sidebar -->
 
@@ -117,14 +124,14 @@
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                 <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
+                 onclick="event.preventDefault();
+                               document.getElementById('logout-form').submit();">
+                  {{ __('Logout') }}
+              </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                  @csrf
+              </form>
               </div>
             </li>
 

@@ -26,4 +26,6 @@ Route::resource('trans', 'TransactionController');
 
 Route::get('report','ReportController@index')->name('report.index');
 Route::post('report/filter','ReportController@filter')->name('laporan.search');
+Route::get('trans/bayar/{id}','TransactionController@pay')->name('trans.pay');
+Route::patch('trans/bayarr/{id}','TransactionController@bayar')->name('trans.bayar');
 

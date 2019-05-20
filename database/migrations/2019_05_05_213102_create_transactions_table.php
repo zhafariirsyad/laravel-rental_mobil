@@ -21,9 +21,11 @@ class CreateTransactionsTable extends Migration
             $table->date('tgl_pinjam');
             $table->date('tgl_kembali');
             $table->integer('harga');
+            $table->integer('denda');
             $table->integer('bayar')->nullable();
             $table->integer('kembalian')->nullable();
             $table->date('tgl_transaksi');
+            $table->integer('total_denda')->nullable();
             $table->integer('status')->nullable();
             $table->date('tgl_dikembalikan')->nullable();
             $table->timestamps();
