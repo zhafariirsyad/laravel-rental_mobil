@@ -29,7 +29,7 @@
             </div>
             <div class="form-group">
                 <label for="">Tanggal Pinjam</label>
-                <input type="date" name="tgl_pinjam" class="form-control" id="" value="{{ date('Y-m-d') }}" disabled>
+                <input type="date" name="tgl_pinjam" class="form-control" id="" value="{{ date('Y-m-d') }}">
             </div>
             <div class="form-group">
                 <label for="">Tanggal Kembali</label>

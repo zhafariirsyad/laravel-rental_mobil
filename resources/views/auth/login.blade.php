@@ -48,6 +48,7 @@
                   </div>
                   <button class="btn btn-primary btn-user btn-block">Login</button>
                   <hr>
+                  <a href="{{ route('register') }}" class="btn btn-block">Register</a>
                 </form>
             </div>
           </div>
