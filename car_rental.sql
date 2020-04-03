@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 07 Bulan Mei 2019 pada 08.48
+-- Waktu pembuatan: 08 Jun 2019 pada 19.15
 -- Versi server: 10.1.31-MariaDB
 -- Versi PHP: 7.2.4
 
@@ -45,8 +45,9 @@ CREATE TABLE `cars` (
 --
 
 INSERT INTO `cars` (`id`, `nama`, `merk`, `plat_no`, `warna`, `tahun`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Toyota Avanza', 'Toyota', 'B 9234 AC', 'Hitam', 2017, '0', '2019-05-06 04:39:51', '2019-05-06 23:29:04'),
-(2, 'Toyota Innova', 'Toyota', 'B 9224 AC', 'Hitam', 2017, '0', '2019-05-06 23:32:59', '2019-05-06 23:34:41');
+(1, 'Toyota Avanza', 'Toyota', 'B 9234 AC', 'Hitam', 2017, '0', '2019-05-06 04:39:51', '2019-05-30 04:30:23'),
+(2, 'Toyota Innova', 'Toyota', 'B 9224 AB', 'Hitam', 2017, '0', '2019-05-06 23:32:59', '2019-05-30 04:14:16'),
+(3, 'Honda Jazz', 'Honda', 'B 9234 AE', 'Putih', 2018, '0', '2019-05-30 04:14:46', '2019-05-30 04:18:22');
 
 -- --------------------------------------------------------
 
@@ -70,7 +71,8 @@ CREATE TABLE `costumers` (
 --
 
 INSERT INTO `costumers` (`id`, `nama`, `alamat`, `jk`, `no_telp`, `no_ktp`, `created_at`, `updated_at`) VALUES
-(1, 'Zhafari Irsyad', 'Ciawi', 'L', '0895635674795', '4795929043434', '2019-05-06 04:40:00', '2019-05-06 04:40:00');
+(1, 'Alfonso Albuquerque', 'Ciawi', 'L', '0895635674795', '4795929043434', '2019-05-06 04:40:00', '2019-05-30 04:30:01'),
+(3, 'Albert Enstein', 'Cibedug', 'L', '086969694311', '9081321894120', '2019-05-30 04:12:52', '2019-05-30 04:12:52');
 
 -- --------------------------------------------------------
 
@@ -93,7 +95,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (2, '2014_10_12_100000_create_password_resets_table', 1),
 (3, '2019_05_05_212501_create_cars_table', 1),
 (4, '2019_05_05_213040_create_costumers_table', 1),
-(5, '2019_05_05_213102_create_transactions_table', 1);
+(6, '2019_05_05_213102_create_transactions_table', 2);
 
 -- --------------------------------------------------------
 
@@ -121,9 +123,11 @@ CREATE TABLE `transactions` (
   `tgl_pinjam` date NOT NULL,
   `tgl_kembali` date NOT NULL,
   `harga` int(11) NOT NULL,
+  `denda` int(11) NOT NULL,
   `bayar` int(11) DEFAULT NULL,
   `kembalian` int(11) DEFAULT NULL,
   `tgl_transaksi` date NOT NULL,
+  `total_denda` int(11) DEFAULT NULL,
   `status` int(11) DEFAULT NULL,
   `tgl_dikembalikan` date DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -134,10 +138,9 @@ CREATE TABLE `transactions` (
 -- Dumping data untuk tabel `transactions`
 --
 
-INSERT INTO `transactions` (`id`, `user_id`, `kostumer_id`, `mobil_id`, `tgl_pinjam`, `tgl_kembali`, `harga`, `bayar`, `kembalian`, `tgl_transaksi`, `status`, `tgl_dikembalikan`, `created_at`, `updated_at`) VALUES
-(11, 1, 1, 1, '2019-05-07', '2019-05-07', 1000000, 2000000, 1000000, '2019-05-07', 1, '2019-05-07', '2019-05-06 21:35:57', '2019-05-06 21:42:48'),
-(12, 1, 1, 1, '2019-05-07', '2019-05-07', 1000000, 2000000, 1000000, '2019-05-07', 1, '2019-05-07', '2019-05-06 23:28:03', '2019-05-06 23:29:04'),
-(13, 1, 1, 2, '2019-05-07', '2019-05-07', 2000000, 3000000, 1000000, '2019-05-07', 1, '2019-05-07', '2019-05-06 23:34:19', '2019-05-06 23:34:41');
+INSERT INTO `transactions` (`id`, `user_id`, `kostumer_id`, `mobil_id`, `tgl_pinjam`, `tgl_kembali`, `harga`, `denda`, `bayar`, `kembalian`, `tgl_transaksi`, `total_denda`, `status`, `tgl_dikembalikan`, `created_at`, `updated_at`) VALUES
+(29, 3, 3, 3, '2019-05-30', '2019-06-01', 2000000, 50000, 2070000, 20000, '2019-05-30', 50000, 1, '2019-06-02', '2019-05-30 04:17:54', '2019-05-30 04:18:34'),
+(31, 3, 1, 1, '2019-05-30', '2019-05-30', 2000000, 30000, 2000000, 0, '2019-05-30', 0, 1, '2019-05-30', '2019-05-30 04:30:17', '2019-05-30 04:30:32');
 
 -- --------------------------------------------------------
 
@@ -161,7 +164,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Zhafari Irsyad', 'zhafari205@gmail.com', NULL, '$2y$10$C1/eFCbkwq2M7Xyu3lAUJOVFalW8x15xiUbGDXCHc.Zj9SbrhgTfW', 'ZMRKDWG2ouP5KoKlcMLefYMjXx0otRFZuMceNn1NtK9kImW08xVwPs57CUPU', '2019-05-06 04:39:33', '2019-05-06 04:39:33');
+(1, 'Zhafari Irsyad', 'zhafari205@gmail.com', NULL, '$2y$10$C1/eFCbkwq2M7Xyu3lAUJOVFalW8x15xiUbGDXCHc.Zj9SbrhgTfW', '1dGvxZyEjZlLO9N1tH4wmcEFRRmHBc49Yi9TZEsYnGDyWgI0ADOUu5RBUXC8', '2019-05-06 04:39:33', '2019-05-06 04:39:33'),
+(3, 'Muhamad Miftah', 'mmumiftah@gmail.com', NULL, '$2y$10$Z4AZdekJSmWSnxXCtr8.jOkPt01vpkYzDDZ9ayeW9../l5Pyi15LS', 'ekdVVEg8nBBM5Ssd1Co5l43qBq6AX3WlSW2S7BoJ7emdyOcMcZhVZfZ98De5', '2019-05-30 04:12:06', '2019-05-30 04:12:06');
 
 --
 -- Indexes for dumped tables
@@ -212,31 +216,31 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT untuk tabel `cars`
 --
 ALTER TABLE `cars`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `costumers`
 --
 ALTER TABLE `costumers`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT untuk tabel `transactions`
 --
 ALTER TABLE `transactions`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
