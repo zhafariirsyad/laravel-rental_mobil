@@ -152,7 +152,6 @@ class TransactionController extends Controller
     public function bayar(Request $request,$id)
     {
         $trans = Transaction::find($id);
-
         $trans->bayar = $request->bayar;
         $trans->kembalian = $request->bayarr;
         $total = $trans->harga + $trans->total_denda;
